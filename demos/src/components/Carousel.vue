@@ -26,23 +26,23 @@ import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Carousel',
   data () {
     return {
-      title: '轮播图演示效果',
+      title: '轮播图演示页面',
       swiperOption: {
         // 轮播可循环
-        loop : true,
+        loop: true,
         // 轮播自动滑动
         autoplay: true,
         // 轮播分页小点
         pagination: {
-          el: '.swiper-pagination',
+          el: '.swiper-pagination'
         },
         // 轮播左右按钮
         navigation: {
           nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          prevEl: '.swiper-button-prev'
         }
       },
       // 图片列表
