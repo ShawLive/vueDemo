@@ -11,8 +11,8 @@ const state = {
 
 // mutations是固定的写法，意思是改变的
 const mutations = {
-  add (state) {
-    state.count++
+  add (state,n) {
+    state.count+=n
   },
   reduce (state) {
     state.count--

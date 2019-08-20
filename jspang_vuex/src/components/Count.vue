@@ -4,8 +4,8 @@
     <hr>
     <h3>{{$store.state.count}}={{count}}</h3>
     <div>
-      <button @click="$store.commit('add')">+1</button>
-      <button @click="$store.commit('reduce')">-1</button>
+      <button @click="$store.commit('add',10)">+10</button>
+      <button @click="reduce">-1</button>
     </div>
   </div>
 </template>
@@ -13,13 +13,16 @@
 <script>
 import store from '@/vuex/store'
 // 方法二：通过mapState的对象来赋值
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 export default {
   data () {
     return {
       msg: 'Hello Vuex'
     }
   },
+  methods: mapMutations([
+    'add','reduce'
+  ]),
   store,
   // 方法一：通过computed的计算属性直接赋值
   // computed:{
