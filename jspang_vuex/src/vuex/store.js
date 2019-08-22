@@ -17,7 +17,7 @@ const getters = {
   }
 }
 
-// mutations是固定的写法，意思是改变的
+// 同步 mutations是固定的写法，意思是改变的
 const mutations = {
   add (state, n) {
     state.count += n
@@ -26,10 +26,25 @@ const mutations = {
     state.count--
   }
 }
+// 异步
+const actions = {
+  // context：上下文对象，这里你可以理解称store本身
+  addActions (context) {
+    context.commit('add', 10)
+    // 异步效果检验，增加一个计时器（setTimeOut）延迟执行
+    setTimeout(()=>{context.commit('reduce')}, 3000);
+    console.log('我比reduce提前执行了');
+  },
+  // {commit}：直接把commit对象传递过来
+  reduceActions({commit}){
+    commit('reduce')
+  }
+}
 
 // 用export default封装代码，让外部可以引用
 export default new Vuex.Store({
   state,
   mutations,
-  getters
+  getters,
+  actions
 })
