@@ -13,7 +13,7 @@
 <script>
 import store from '@/vuex/store'
 // 方法二：通过mapState的对象来赋值
-import {mapState,mapMutations} from 'vuex'
+import {mapState, mapMutations, mapGetters} from 'vuex'
 export default {
   data () {
     return {
@@ -21,7 +21,8 @@ export default {
     }
   },
   methods: mapMutations([
-    'add','reduce'
+    'add',
+    'reduce'
   ]),
   store,
   // 方法一：通过computed的计算属性直接赋值
@@ -41,7 +42,18 @@ export default {
   //   }
   // })
   // 方法三：通过mapState的数值来赋值
-  computed: mapState(['count'])
+  // computed: mapState(['count'])
+  
+  // vue的构造器里只能有一个computed属性，现在我们对computed属性进行改造
+  computed: {
+    //改造时我们使用ES6中的展开运算符”…”
+    ...mapState(["count"]),
+    // count () {
+    //   return this.$store.getters.count;
+    // }
+    //编码进行简化
+    ...mapGetters(["count"])
+  }
 
 }
 </script>
