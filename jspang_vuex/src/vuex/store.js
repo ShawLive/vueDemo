@@ -12,8 +12,7 @@ const state = {
 // 声明我们的getters属性
 const getters = {
   count: function (state) {
-    return state.count += 100;
-
+    return (state.count += 100)
   }
 }
 
@@ -32,19 +31,28 @@ const actions = {
   addActions (context) {
     context.commit('add', 10)
     // 异步效果检验，增加一个计时器（setTimeOut）延迟执行
-    setTimeout(()=>{context.commit('reduce')}, 3000);
-    console.log('我比reduce提前执行了');
+    setTimeout(() => { context.commit('reduce') }, 3000)
+    console.log('我比reduce提前执行了')
   },
   // {commit}：直接把commit对象传递过来
-  reduceActions({commit}){
+  reduceActions ({commit}) {
     commit('reduce')
   }
 }
 
-// 用export default封装代码，让外部可以引用
-export default new Vuex.Store({
+// 声明模块组
+const moduleA = {
   state,
   mutations,
   getters,
   actions
+}
+
+// 用export default封装代码，让外部可以引用
+export default new Vuex.Store({
+  // state,
+  // mutations,
+  // getters,
+  // actions
+  modules: {a: moduleA}
 })
